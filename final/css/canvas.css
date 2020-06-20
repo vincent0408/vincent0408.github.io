@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+}
+
+#canvas {
+    display: block;
+}
+
+#score {
+    position: absolute;
+    top: 4%;
+    right: 5%;
+    font-size: 40px;
+}
+
+#level {
+    position: absolute;
+    top: 4%;
+    left: 5%;
+    font-size: 40px;
+}
+
+#container {
+    position: relative;
+}
