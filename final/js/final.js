@@ -1,64 +1,29 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+var canvas, ctx, divScore, divLevel, centerX, centerY, radius, score, level, particles;
+const playFor = 60;
+const numparticles = 120;
+
+
+
+canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-ctx.fillStyle = "#fffbc8";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
 document.body.style.overflow = "hidden";
 
-var centerX = canvas.width / 2;
-var centerY = canvas.height / 2;
-var radius = 10;
-ctx.beginPath();
-ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-ctx.fillStyle = 'green';
-ctx.fill();
+divScore = document.getElementById("score");
+divLevel = document.getElementById("level");
+
+centerX = canvas.width / 2;
+centerY = canvas.height / 2;
+radius = 10;
+score = 0;
+level = 1;
+particles = []
 
 const center = {
     x: centerX,
     y: centerY
 };
-
-
-function Particle() {
-
-    this.radius = Math.floor(Math.random() * 10 + 10);
-    this.velocity = Math.floor(Math.random() * 200 + 200);
-    this.font = Math.floor(Math.random() * 10 + 10).toString() + "pt Calibri";
-    this.letter = String.fromCharCode(Math.random() * 26 + 65);
-}
-
-// Level & Score
-// ctx.save();
-// ctx.font = '18pt Calibri';
-// ctx.fillStyle = "black";
-// ctx.textAlign = "left";
-// ctx.fillText("Level 1", 50, 50);
-// ctx.restore();
-var score = 0;
-var level = 1;
-
-//Create letter bank
-var particles = []
-
-var divScore = document.getElementById("score");
-var divLevel = document.getElementById("level");
-
-var boxSize = 20;
-const playFor = 60; // how long all this will take
-const numparticles = 120;
-
-
-var canvas = document.createElement("canvas");
-canvas.style.position = "absolute"; // pos absolute to avoid scroll bars
-canvas.style.top = canvas.style.left = "0px";
-canvas.width = innerWidth;
-canvas.height = innerHeight;
-
-document.body.appendChild(canvas);
-var ctx = canvas.getContext("2d");
-
-
 
 function addParticles(when, where, howLong, radius, font, letter, velocity) {
     var par;
@@ -136,6 +101,10 @@ setup(); // make some random particles
 
 function updateAll() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the screen
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    ctx.fillStyle = 'green';
+    ctx.fill();
     divScore.textContent = "Score: " + score;
     divLevel.textContent = "Level: " + level;
 
@@ -180,6 +149,7 @@ function updateAll() {
                 particles.splice(i, 1); // Bang
                 i -= 1; // clean up the loop counter
                 alert("You Lose!");
+                document.location.href("");
                 //gameOver();
             }
         }
