@@ -4,8 +4,112 @@
 
 #canvas {
     display: block;
-    /* background-color: black; */
+    position: relative;
     z-index: -1;
+}
+
+#earth {
+    position: absolute;
+    margin: auto;
+    width: 3%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.defender {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #FFF;
+    z-index: 11;
+    font-size: 108px;
+    text-align: center;
+}
+
+.select {
+    position: absolute;
+    z-index: 8;
+    left: 0px;
+    top: 0px;
+}
+
+.start {
+    position: absolute;
+    z-index: 8;
+    left: 0px;
+    top: 0px;
+}
+
+.startButton {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 70%;
+    border-color: #FFF;
+    font-size: 48px;
+    z-index: 10;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: Calibri;
+    background: none;
+    color: #FFF;
+}
+
+.returnButton {
+    position: absolute;
+    left: 35%;
+    top: 70%;
+    border-color: #FFF;
+    font-size: 48px;
+    z-index: 10;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: Calibri;
+    background: none;
+    color: #FFF;
+}
+
+.returnButton:hover {
+    color: black;
+    background-color: white;
+}
+
+.restartButton {
+    position: absolute;
+    right: 35%;
+    top: 70%;
+    border-color: #FFF;
+    font-size: 48px;
+    z-index: 10;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: Calibri;
+    background: none;
+    color: #FFF;
+}
+
+.restartButton:hover {
+    color: black;
+    background-color: white;
+}
+
+.mission {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #FFF;
+    z-index: 10;
+    font-size: 72px;
+    text-align: center;
 }
 
 #score {
@@ -84,27 +188,6 @@ html {
     height: 3px;
     background: transparent;
     box-shadow: 961px 1193px #FFF, 884px 71px #FFF, 1189px 1298px #FFF, 1908px 213px #FFF, 530px 893px #FFF, 58px 1813px #FFF, 1041px 1849px #FFF, 565px 1814px #FFF, 1433px 1934px #FFF, 885px 1281px #FFF, 483px 322px #FFF, 1515px 1819px #FFF, 1358px 220px #FFF, 1890px 1832px #FFF, 598px 1631px #FFF, 1847px 823px #FFF, 1823px 1120px #FFF, 1374px 1382px #FFF, 1412px 1772px #FFF, 486px 1950px #FFF, 574px 845px #FFF, 1428px 1009px #FFF, 807px 1066px #FFF, 713px 1024px #FFF, 137px 1639px #FFF, 1485px 1980px #FFF, 1430px 611px #FFF, 218px 458px #FFF, 1879px 462px #FFF, 315px 1890px #FFF, 714px 1190px #FFF, 1030px 1417px #FFF, 1545px 624px #FFF, 865px 590px #FFF, 1702px 965px #FFF, 469px 243px #FFF, 1127px 1558px #FFF, 1279px 1750px #FFF, 1370px 991px #FFF, 1047px 571px #FFF, 13px 1938px #FFF, 949px 1541px #FFF, 1940px 287px #FFF, 365px 656px #FFF, 119px 345px #FFF, 1373px 631px #FFF, 1552px 979px #FFF, 1577px 1640px #FFF, 1022px 1871px #FFF, 885px 779px #FFF, 1233px 832px #FFF, 120px 269px #FFF, 1059px 538px #FFF, 437px 1154px #FFF, 723px 215px #FFF, 1485px 1199px #FFF, 1606px 1033px #FFF, 438px 1068px #FFF, 491px 228px #FFF, 1947px 1750px #FFF, 563px 1783px #FFF, 1334px 416px #FFF, 633px 1560px #FFF, 129px 1962px #FFF, 674px 1399px #FFF, 1371px 38px #FFF, 1962px 469px #FFF, 1404px 203px #FFF, 621px 1392px #FFF, 88px 98px #FFF, 387px 610px #FFF, 1621px 1404px #FFF, 1762px 847px #FFF, 1247px 11px #FFF, 11px 288px #FFF, 1623px 1195px #FFF, 396px 769px #FFF, 1593px 931px #FFF, 1173px 1567px #FFF, 1587px 554px #FFF, 1459px 482px #FFF, 316px 1282px #FFF, 876px 33px #FFF, 790px 670px #FFF, 1631px 389px #FFF, 999px 76px #FFF, 1179px 1933px #FFF, 1665px 444px #FFF, 178px 441px #FFF, 1524px 763px #FFF, 1530px 792px #FFF, 98px 1358px #FFF, 654px 706px #FFF, 1372px 607px #FFF, 538px 895px #FFF, 795px 1520px #FFF, 1836px 102px #FFF, 958px 1999px #FFF, 1849px 1705px #FFF, 1414px 1018px #FFF;
-}
-
-#title {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    color: #FFF;
-    text-align: center;
-    font-family: "lato", sans-serif;
-    font-weight: 300;
-    font-size: 50px;
-    letter-spacing: 10px;
-    margin-top: -60px;
-    padding-left: 10px;
-}
-
-#title span {
-    background: -webkit-linear-gradient(white, #38495a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 @keyframes animStar {

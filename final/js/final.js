@@ -1,9 +1,12 @@
-var canvas, ctx, divScore, divLevel, centerX, centerY, radius, score, level, particles, center;
-const playFor = 60;
-var numparticles = 120;
+var canvas, ctx, divScore, divLevel, centerX, centerY, radius, score, level, particles, center, numparticles, playFor;
 var isPressed = false;
 var globalTime; //as time is important make a global for it
 var startTime; // we need to have a referance point
+var paused = true;
+
+var ss = StartScreen();
+var sg = StartGame();
+StartButton(ss, sg);
 
 function Initial() {
     canvas = document.getElementById("canvas");
@@ -20,12 +23,16 @@ function Initial() {
     radius = 10;
     score = 0;
     level = 0;
+    numparticles = 20;
+    playFor = 20;
     particles = []
 
     center = {
         x: centerX,
         y: centerY
     };
+
+
 }
 
 Initial();
@@ -51,7 +58,10 @@ function mainLoop(time) {
         startTime = time;
     }
     globalTime = time - startTime; // set time
-    updateAll(); // call the main logic
+    if (!paused) {
+        updateAll(); // call the main logic
+
+    }
 
     requestAnimationFrame(mainLoop);
 }
@@ -66,6 +76,9 @@ AddEL();
 
 function setup() {
     level++;
+    numparticles = Math.floor(numparticles * Math.ceil(Math.pow(1.05, level - 1)));
+    playFor *= Math.pow(1.03, level - 1);
+
     for (var i = 0; i < numparticles; i++) {
         var px, py;
         fromNSWE = Math.floor(Math.random() * 4);
@@ -85,12 +98,12 @@ function setup() {
             py = Math.floor(Math.random() * canvas.height);
         }
         addParticles(
-            Math.random() * (playFor - 1) * 1000, // get time to start box
+            Math.floor(Math.random() * playFor * 1000), // get time to start box
             {
                 x: px,
                 y: py
             },
-            Math.random() * 10 * 100 + 1000, // play for over 1 sec less than 6
+            Math.floor(Math.random() * 10 * 100 + 1000), // play for over 1 sec less than 6
             Math.floor(Math.random() * 10 + 10),
             Math.floor(Math.random() * 10 + 15).toString() + "pt Calibri",
             String.fromCharCode(Math.random() * 26 + 97),
@@ -107,10 +120,10 @@ setup(); // make some random particles
 
 function updateAll() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the screen
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = 'green';
-    ctx.fill();
+    // ctx.beginPath();
+    // ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    // ctx.fillStyle = 'green';
+    // ctx.fill();
     divScore.textContent = "Score: " + score;
     divLevel.textContent = "Level: " + level;
 
@@ -129,11 +142,11 @@ function updateAll() {
             var velocity = 200
             var toCenterVector = new Vector(velocity, data.angle);
 
-            if (data.distance >= 20) { // not at end yet 
+            if (data.distance >= 35) { // not at end yet 
                 //pos /= par.len; // normalize time pos
                 // pos = (par.where.y - (-200 / 2)) * pos; // distance to past the top
-                par.where.x += toCenterVector.magnitudeX * pos / 3000000;
-                par.where.y += toCenterVector.magnitudeY * pos / 3000000;
+                par.where.x += toCenterVector.magnitudeX * pos / 50000 * Math.pow(1.05, level - 1);
+                par.where.y += toCenterVector.magnitudeY * pos / 50000 * Math.pow(1.05, level - 1);
 
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
@@ -147,8 +160,14 @@ function updateAll() {
 
             } else {
                 particles.splice(i, 1);
-                alert("You Lose!");
                 gameOver();
+                var ss = SelectionScreen();
+                var rb = ReturnButton();
+                var mf = MissionFailed();
+                RestartButton(ss, mf, rb);
+                // alert("You Lose!");
+                paused = true;
+
             }
         }
     }
@@ -215,6 +234,88 @@ function gameOver() {
 
 }
 
+function StartScreen() {
+    var start = document.createElement("canvas");
+    start.className = "start";
+    start.width = window.innerWidth;
+    start.height = window.innerHeight;
+    document.getElementById("container").appendChild(start);
+    var ctx = start.getContext("2d");
+    ctx.globalAlpha = 0.4;
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, start.width, start.height);
+    return start;
+}
+
+function StartGame() {
+    var game = document.createElement("div");
+    game.className = "defender";
+    game.innerHTML = "Earth Defender";
+    document.getElementById("container").appendChild(game);
+    return game;
+}
+
+function StartButton(startScreen, startGame) {
+    var startButton = document.createElement("button");
+    startButton.className = "startButton";
+    startButton.innerHTML = "Start";
+    startButton.onclick = function() {
+        paused = false;
+        startScreen.remove();
+        startGame.remove();
+        startButton.remove();
+        Initial();
+    };
+    document.getElementById("container").appendChild(startButton);
+}
+
+function SelectionScreen() {
+    var select = document.createElement("canvas");
+    select.className = "select";
+    select.width = window.innerWidth;
+    select.height = window.innerHeight;
+
+    document.getElementById("container").appendChild(select);
+    var ctx = select.getContext("2d");
+    ctx.globalAlpha = 0.4;
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, select.width, select.height);
+    return select;
+}
+
+function ReturnButton() {
+    var returnButton = document.createElement("button");
+    returnButton.className = "returnButton";
+    returnButton.innerHTML = "Return";
+    returnButton.onclick = function() {
+        window.location = "./index.html";
+    }
+    document.getElementById("container").appendChild(returnButton);
+    return returnButton;
+}
+
+function RestartButton(select, mission, returnButton) {
+    var restartButton = document.createElement("button");
+    restartButton.className = "restartButton";
+    restartButton.innerHTML = "Restart";
+    restartButton.onclick = function() {
+        paused = false;
+        select.remove();
+        mission.remove();
+        returnButton.remove();
+        restartButton.remove();
+        Initial();
+    };
+    document.getElementById("container").appendChild(restartButton);
+}
+
+function MissionFailed() {
+    var mission = document.createElement("div");
+    mission.className = "mission";
+    mission.innerHTML = "Mission Failed"
+    document.getElementById("container").appendChild(mission);
+    return mission;
+}
 
 function distanceAndAngleBetweenTwoPoints(x1, y1, x2, y2) {
     var x = x2 - x1,
