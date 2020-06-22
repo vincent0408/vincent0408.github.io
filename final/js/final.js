@@ -37,7 +37,7 @@ function Initial() {
 
 Initial();
 
-function addParticles(when, where, howLong, radius, font, letter, velocity) {
+function AddParticles(when, where, howLong, radius, font, letter, velocity) {
     var par;
     particles.push(par = {
         when: when,
@@ -53,28 +53,28 @@ function addParticles(when, where, howLong, radius, font, letter, velocity) {
 
 
 
-function mainLoop(time) {
+function MainLoop(time) {
     if (startTime === undefined) {
         startTime = time;
     }
     globalTime = time - startTime; // set time
     if (!paused) {
-        updateAll(); // call the main logic
+        UpdateAll(); // call the main logic
 
     }
 
-    requestAnimationFrame(mainLoop);
+    requestAnimationFrame(MainLoop);
 }
-requestAnimationFrame(mainLoop);
+requestAnimationFrame(MainLoop);
 
-function AddEL() {
-    document.addEventListener('keydown', keyDownHandler);
-    document.addEventListener('keyup', keyUpHandler);
-    window.addEventListener('resize', resizeHandler);
+function AddEventListener() {
+    document.addEventListener('keydown', KeyDownHandler);
+    document.addEventListener('keyup', KeyUpHandler);
+    window.addEventListener('resize', ResizeHandler);
 }
-AddEL();
+AddEventListener();
 
-function setup() {
+function Setup() {
     level++;
     numparticles = Math.floor(numparticles * Math.ceil(Math.pow(1.05, level - 1)));
     playFor *= Math.pow(1.03, level - 1);
@@ -97,18 +97,18 @@ function setup() {
             px = canvas.width;
             py = Math.floor(Math.random() * canvas.height);
         }
-        addParticles(
+        var rd = Math.floor(Math.random() * 8 + 15);
+        AddParticles(
             Math.floor(Math.random() * playFor * 1000), // get time to start box
             {
                 x: px,
                 y: py
             },
             Math.floor(Math.random() * 10 * 100 + 1000), // play for over 1 sec less than 6
-            Math.floor(Math.random() * 10 + 10),
-            Math.floor(Math.random() * 10 + 15).toString() + "pt Calibri",
-            String.fromCharCode(Math.random() * 26 + 97),
+            rd,
+            (rd - 1).toString() + "pt Calibri",
+            String.fromCharCode(Math.random() * 26 + 65),
             Math.floor(Math.random() * 150 + 50)
-
         );
     }
     particles.sort((a, b) => parseFloat(a.when) - parseFloat(b.when));
@@ -116,14 +116,10 @@ function setup() {
 
 
 
-setup(); // make some random particles
+Setup(); // make some random particles
 
-function updateAll() {
+function UpdateAll() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the screen
-    // ctx.beginPath();
-    // ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    // ctx.fillStyle = 'green';
-    // ctx.fill();
     divScore.textContent = "Score: " + score;
     divLevel.textContent = "Level: " + level;
 
@@ -138,99 +134,89 @@ function updateAll() {
         }
         if (par.moving) { // move particles that need it
             var pos = globalTime - par.when; // get pos in time
-            var data = distanceAndAngleBetweenTwoPoints(par.where.x, par.where.y, center.x, center.y);
+            var data = DistanceBetweenTwoPoints(par.where.x, par.where.y, center.x, center.y);
             var velocity = 200
             var toCenterVector = new Vector(velocity, data.angle);
 
             if (data.distance >= 35) { // not at end yet 
-                //pos /= par.len; // normalize time pos
-                // pos = (par.where.y - (-200 / 2)) * pos; // distance to past the top
                 par.where.x += toCenterVector.magnitudeX * pos / 500000 * Math.pow(1.05, level - 1);
                 par.where.y += toCenterVector.magnitudeY * pos / 500000 * Math.pow(1.05, level - 1);
-
+                ctx.beginPath();
+                ctx.arc(par.where.x, par.where.y, par.radius, 0, 2 * Math.PI, false);
+                ctx.strokeStyle = "white";
+                ctx.stroke();
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = "white";
                 ctx.font = par.font;
                 ctx.fillText(par.letter, par.where.x, par.where.y);
-                ctx.beginPath();
-                ctx.arc(par.where.x, par.where.y, par.radius, 0, 2 * Math.PI, false);
-                ctx.strokeStyle = "white";
-                ctx.stroke();
-
             } else {
                 particles.splice(i, 1);
-                gameOver();
+                GameOver();
                 var ss = SelectionScreen();
                 var rb = ReturnButton();
                 var mf = MissionFailed();
                 RestartButton(ss, mf, rb);
-                // alert("You Lose!");
                 paused = true;
-
             }
         }
     }
     if (particles.length == 0) { //no more particles so add more
-        setup();
-
+        Setup();
         startTime = undefined; // reset start time for new particles.
     }
     ctx.save();
-
-
 }
 
 
-
-function keyDownHandler(e) {
+function KeyDownHandler(e) {
     var correctLetter = false;
     isPressed = true;
     for (let i = 0; i < particles.length; i++) {
         if (isPressed) {
-            if (particles[i].letter.charCodeAt(0) == e.keyCode + 32 && particles[i].moving == true) {
+            if (particles[i].letter.charCodeAt(0) == e.keyCode && particles[i].moving == true) {
                 correctLetter = true;
                 particles.splice(i, 1);
-                refreshScore(1);
+                RefreshScore(1);
                 break;
             }
         }
     }
     if (isPressed) {
         if (!correctLetter) {
-            refreshScore(-1);
+            RefreshScore(-1);
 
         }
     }
 
 }
 
-function keyUpHandler(e) {
+function KeyUpHandler(e) {
     isPressed = false;
     correctLetter = false;
 }
 
-function resizeHandler() {
+function ResizeHandler() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     center.x = canvas.width / 2;
     center.y = canvas.height / 2;
 }
 
-function refreshScore(amount) {
+function RefreshScore(amount) {
     score += amount;
 }
 
-function RemoveEL() {
-    document.removeEventListener('keydown', keyDownHandler);
-    document.removeEventListener('keyup', keyUpHandler);
-    window.removeEventListener('resize', resizeHandler);
+function RemoveEventListener() {
+    document.removeEventListener('keydown', KeyDownHandler);
+    document.removeEventListener('keyup', KeyUpHandler);
+    window.removeEventListener('resize', ResizeHandler);
 }
 
-function gameOver() {
-    RemoveEL();
+function GameOver() {
+    RemoveEventListener();
     Initial();
-    AddEL();
+    AddEventListener();
 
 }
 
@@ -317,7 +303,7 @@ function MissionFailed() {
     return mission;
 }
 
-function distanceAndAngleBetweenTwoPoints(x1, y1, x2, y2) {
+function DistanceBetweenTwoPoints(x1, y1, x2, y2) {
     var x = x2 - x1,
         y = y2 - y1;
 
