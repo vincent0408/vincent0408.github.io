@@ -1,6 +1,6 @@
 var canvas, ctx, divScore, divLevel, centerX, centerY, radius, score, level, particles, center;
 const playFor = 60;
-const numparticles = 20;
+var numparticles = 120;
 var isPressed = false;
 var globalTime; //as time is important make a global for it
 var startTime; // we need to have a referance point
@@ -132,14 +132,18 @@ function updateAll() {
             if (data.distance >= 20) { // not at end yet 
                 //pos /= par.len; // normalize time pos
                 // pos = (par.where.y - (-200 / 2)) * pos; // distance to past the top
-                par.where.x += toCenterVector.magnitudeX * pos / 3000000;
-                par.where.y += toCenterVector.magnitudeY * pos / 3000000;
+                par.where.x += toCenterVector.magnitudeX * pos / 300000;
+                par.where.y += toCenterVector.magnitudeY * pos / 300000;
 
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
-                ctx.fillStyle = "black";
+                ctx.fillStyle = "white";
                 ctx.font = par.font;
                 ctx.fillText(par.letter, par.where.x, par.where.y);
+                ctx.beginPath();
+                ctx.arc(par.where.x, par.where.y, par.radius, 0, 2 * Math.PI, false);
+                ctx.strokeStyle = "white";
+                ctx.stroke();
 
             } else {
                 particles.splice(i, 1);
