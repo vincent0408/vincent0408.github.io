@@ -132,8 +132,8 @@ function updateAll() {
             if (data.distance >= 20) { // not at end yet 
                 //pos /= par.len; // normalize time pos
                 // pos = (par.where.y - (-200 / 2)) * pos; // distance to past the top
-                par.where.x += toCenterVector.magnitudeX * pos / 300000;
-                par.where.y += toCenterVector.magnitudeY * pos / 300000;
+                par.where.x += toCenterVector.magnitudeX * pos / 3000000;
+                par.where.y += toCenterVector.magnitudeY * pos / 3000000;
 
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
