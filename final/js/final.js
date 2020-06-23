@@ -41,7 +41,7 @@ function Initial() {
 
 Initial();
 
-function AddParticles(when, where, howLong, radius, font, letter, velocity) {
+function AddParticles(when, where, howLong, radius, font, letter, velocity, asteroid) {
     var par;
     particles.push(par = {
         when: when,
@@ -50,7 +50,8 @@ function AddParticles(when, where, howLong, radius, font, letter, velocity) {
         radius: radius,
         font: font,
         letter: letter,
-        velocity: velocity
+        velocity: velocity,
+        asteroid: asteroid
     });
     return par;
 }
@@ -102,6 +103,19 @@ function Setup() {
             py = Math.floor(Math.random() * canvas.height);
         }
         var rd = Math.floor(Math.random() * 8 + 15);
+
+        var asteroid = document.createElement("img");
+        asteroid.src = "./image/asteroid_gray.png"
+        asteroid.id = "asteroid";
+        asteroid.style.left = (px.toString() + "px");
+        asteroid.style.top = (py.toString() + "px");
+        asteroid.style.display = "none";
+        console.log(rd / asteroid.width);
+        asteroid.style.width = (rd / asteroid.width * 100).toString() + "%";
+
+        document.body.appendChild(asteroid);
+
+
         AddParticles(
             Math.floor(Math.random() * playFor * 1000), // get time to start box
             {
@@ -112,7 +126,8 @@ function Setup() {
             rd,
             (rd - 0.5).toString() + "pt Roboto",
             String.fromCharCode(Math.random() * 26 + 65),
-            Math.floor(Math.random() * 150 + 50)
+            Math.floor(Math.random() * 150 + 50),
+            asteroid
         );
     }
     particles.sort((a, b) => parseFloat(a.when) - parseFloat(b.when));
@@ -141,23 +156,32 @@ function UpdateAll() {
             var data = DistanceBetweenTwoPoints(par.where.x, par.where.y, center.x, center.y);
             var velocity = 200
             var toCenterVector = new Vector(velocity, data.angle);
-
+            par.asteroid.style.display = "inline-block";
 
             if (data.distance >= 35) { // not at end yet 
                 par.where.x += toCenterVector.magnitudeX * pos / 500000 * Math.pow(1.01, level - 1);
                 par.where.y += toCenterVector.magnitudeY * pos / 500000 * Math.pow(1.01, level - 1);
+
+                par.asteroid.style.left = (par.where.x - (par.asteroid.width / 2)).toString() + "px";
+                par.asteroid.style.top = (par.where.y - (par.asteroid.height / 2.2)).toString() + "px";
+
+
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
+                ctx.strokeStyle = "#888";
+                ctx.lineWidth = 6;
+                ctx.strokeText(par.letter, par.where.x, par.where.y);
                 ctx.fillStyle = "white";
                 ctx.font = par.font;
                 ctx.fillText(par.letter, par.where.x, par.where.y);
                 // CreateAsteroid(par.where.x, par.where.y);
-                ctx.beginPath();
-                ctx.arc(par.where.x, par.where.y, par.radius, 0, 2 * Math.PI, false);
-                ctx.strokeStyle = "white";
-                ctx.stroke();
+                // ctx.beginPath();
+                // ctx.arc(par.where.x, par.where.y, par.radius, 0, 2 * Math.PI, false);
+                // ctx.strokeStyle = "white";
+                // ctx.stroke();
 
             } else {
+                document.body.removeChild(par.asteroid);
                 particles.splice(i, 1);
                 GameOver();
                 var ss = SelectionScreen();
@@ -175,18 +199,7 @@ function UpdateAll() {
     ctx.save();
 }
 
-function CreateAsteroid(x, y) {
-    var asteroid = document.createElement("img");
-    asteroid.src = "./image/asteroid.png"
-    asteroid.id = "asteroid";
-    asteroid.style.left = (x.toString() + "px");
-    asteroid.style.top = (y.toString() + "px");
 
-    document.body.appendChild(asteroid);
-
-
-
-}
 
 function KeyDownHandler(e) {
     var correctLetter = false;
@@ -195,6 +208,7 @@ function KeyDownHandler(e) {
         if (isPressed) {
             if (particles[i].letter.charCodeAt(0) == e.keyCode && particles[i].moving == true) {
                 correctLetter = true;
+                particles[i].asteroid.remove();
                 particles.splice(i, 1);
                 RefreshScore(1);
                 break;
@@ -231,6 +245,9 @@ function RemoveEventListener() {
 }
 
 function GameOver() {
+    for (let i = 0; i < particles.length; i++) {
+        particles[i].asteroid.remove();
+    }
     RemoveEventListener();
     Initial();
     AddEventListener();

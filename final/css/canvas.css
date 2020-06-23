@@ -30,7 +30,7 @@
 #canvas {
     display: block;
     position: relative;
-    z-index: -100;
+    z-index: -1;
 }
 
 #earth {
@@ -41,16 +41,16 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 0;
+    z-index: -100;
 }
 
 #asteroid {
     position: absolute;
     margin: auto;
-    width: 3%;
+    /* width: 3%; */
     /* top: 0; */
     /* left: 0; */
-    z-index: 1;
+    z-index: -2;
 }
 
 .defender {
