@@ -1,7 +1,7 @@
 var canvas, ctx, divScore, divLevel, centerX, centerY, radius, score, level, particles, center, numparticles, playFor;
 var isPressed = false;
-var globalTime; //as time is important make a global for it
-var startTime; // we need to have a referance point
+var globalTime;
+var startTime;
 var paused = true;
 
 function PageLoad() {
@@ -59,12 +59,12 @@ function AddParticles(when, where, howLong, radius, font, letter, velocity, aste
 
 
 function MainLoop(time) {
-    if (startTime === undefined) {
+    if (startTime == undefined) {
         startTime = time;
     }
-    globalTime = time - startTime; // set time
+    globalTime = time - startTime;
     if (!paused) {
-        UpdateAll(); // call the main logic
+        UpdateAll();
 
     }
 
@@ -117,12 +117,11 @@ function Setup() {
 
 
         AddParticles(
-            Math.floor(Math.random() * playFor * 1000), // get time to start box
-            {
+            Math.floor(Math.random() * playFor * 1000), {
                 x: px,
                 y: py
             },
-            Math.floor(Math.random() * 10 * 100 + 1000), // play for over 1 sec less than 6
+            Math.floor(Math.random() * 10 * 100 + 1000),
             rd,
             (rd - 0.5).toString() + "pt Roboto",
             String.fromCharCode(Math.random() * 26 + 65),
@@ -135,30 +134,28 @@ function Setup() {
 
 
 
-Setup(); // make some random particles
+Setup();
 
 function UpdateAll() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the screen
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     divScore.textContent = "Score " + score;
     divLevel.textContent = "Level " + level;
 
-    // iterate box array and check for new starts
     for (var i = 0; i < particles.length; i++) {
         var par = particles[i];
-        if (!par.moving) { // is box not moving ???
-            // check th time
-            if (par.when < globalTime) { // it needs to start
-                par.moving = true; // flag it to move
+        if (!par.moving) {
+            if (par.when < globalTime) {
+                par.moving = true;
             }
         }
-        if (par.moving) { // move particles that need it
-            var pos = globalTime - par.when; // get pos in time
+        if (par.moving) {
+            var pos = globalTime - par.when;
             var data = DistanceBetweenTwoPoints(par.where.x, par.where.y, center.x, center.y);
             var velocity = 200
             var toCenterVector = new Vector(velocity, data.angle);
             par.asteroid.style.display = "inline-block";
 
-            if (data.distance >= 35) { // not at end yet 
+            if (data.distance >= 35) {
                 par.where.x += toCenterVector.magnitudeX * pos / 500000 * Math.pow(1.01, level - 1);
                 par.where.y += toCenterVector.magnitudeY * pos / 500000 * Math.pow(1.01, level - 1);
 
@@ -192,9 +189,9 @@ function UpdateAll() {
             }
         }
     }
-    if (particles.length == 0) { //no more particles so add more
+    if (particles.length == 0) {
         Setup();
-        startTime = undefined; // reset start time for new particles.
+        startTime = undefined;
     }
     ctx.save();
 }
@@ -361,10 +358,8 @@ function DistanceBetweenTwoPoints(x1, y1, x2, y2) {
         y = y2 - y1;
 
     return {
-        // x^2 + y^2 = r^2
         distance: Math.sqrt(x * x + y * y),
 
-        // convert from radians to degrees
         angle: Math.atan2(y, x) * 180 / Math.PI
     }
 }
