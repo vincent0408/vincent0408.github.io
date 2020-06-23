@@ -5,32 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Vincent's Final Project</title>
-    <!-- <script defer src="../js/canvas.js"></script>
-    <script defer src="../js/particle.js"></script>
-    <script defer src="../js/movement.js"></script> -->
-    <script defer src="./js/final.js" type="text/javascript"></script>
-    <!-- <script defer src="../js/letters.js"></script> -->
 
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./js/final.js" type="text/javascript">
+    </script>
     <link rel="stylesheet" type="text/css" href="./css/canvas.css">
 
 
 </head>
 
 <body>
+    <div id='stars' style="z-index: 1;"></div>
+    <div id='stars2' style="z-index: 1;"></div>
+    <div id='stars3' style="z-index: 1;"></div>
 
     <div id="container">
-        <img src="./image/Earth.png" id="earth">
+
         <canvas id="canvas"></canvas>
-        <div id="score" style="color: white;">Score: </div>
-        <div id="level" style="color: white;">Level: </div>
-        <div id='stars' style="z-index: 1;"></div>
-        <div id='stars2' style="z-index: 1;"></div>
-        <div id='stars3' style="z-index: 1;"></div>
+        <div id="score">Score </div>
+        <div id="level">Level </div>
 
 
     </div>
+    <img src="./image/Earth.png" id="earth">
 
 
 

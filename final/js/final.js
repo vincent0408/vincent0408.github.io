@@ -4,9 +4,13 @@ var globalTime; //as time is important make a global for it
 var startTime; // we need to have a referance point
 var paused = true;
 
-var ss = StartScreen();
-var sg = StartGame();
-StartButton(ss, sg);
+function PageLoad() {
+    var ss = StartScreen();
+    var sg = StartGame();
+    StartButton(ss, sg);
+}
+
+PageLoad();
 
 function Initial() {
     canvas = document.getElementById("canvas");
@@ -76,7 +80,7 @@ AddEventListener();
 
 function Setup() {
     level++;
-    numparticles = Math.floor(numparticles * Math.ceil(Math.pow(1.05, level - 1)));
+    numparticles = Math.floor(numparticles * Math.pow(1.05, level - 1));
     playFor *= Math.pow(1.03, level - 1);
 
     for (var i = 0; i < numparticles; i++) {
@@ -106,7 +110,7 @@ function Setup() {
             },
             Math.floor(Math.random() * 10 * 100 + 1000), // play for over 1 sec less than 6
             rd,
-            (rd - 1).toString() + "pt Calibri",
+            (rd - 0.5).toString() + "pt Roboto",
             String.fromCharCode(Math.random() * 26 + 65),
             Math.floor(Math.random() * 150 + 50)
         );
@@ -120,8 +124,8 @@ Setup(); // make some random particles
 
 function UpdateAll() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clear the screen
-    divScore.textContent = "Score: " + score;
-    divLevel.textContent = "Level: " + level;
+    divScore.textContent = "Score " + score;
+    divLevel.textContent = "Level " + level;
 
     // iterate box array and check for new starts
     for (var i = 0; i < particles.length; i++) {
@@ -138,18 +142,21 @@ function UpdateAll() {
             var velocity = 200
             var toCenterVector = new Vector(velocity, data.angle);
 
+
             if (data.distance >= 35) { // not at end yet 
-                par.where.x += toCenterVector.magnitudeX * pos / 500000 * Math.pow(1.05, level - 1);
-                par.where.y += toCenterVector.magnitudeY * pos / 500000 * Math.pow(1.05, level - 1);
-                ctx.beginPath();
-                ctx.arc(par.where.x, par.where.y, par.radius, 0, 2 * Math.PI, false);
-                ctx.strokeStyle = "white";
-                ctx.stroke();
+                par.where.x += toCenterVector.magnitudeX * pos / 500000 * Math.pow(1.01, level - 1);
+                par.where.y += toCenterVector.magnitudeY * pos / 500000 * Math.pow(1.01, level - 1);
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = "white";
                 ctx.font = par.font;
                 ctx.fillText(par.letter, par.where.x, par.where.y);
+                // CreateAsteroid(par.where.x, par.where.y);
+                ctx.beginPath();
+                ctx.arc(par.where.x, par.where.y, par.radius, 0, 2 * Math.PI, false);
+                ctx.strokeStyle = "white";
+                ctx.stroke();
+
             } else {
                 particles.splice(i, 1);
                 GameOver();
@@ -168,6 +175,18 @@ function UpdateAll() {
     ctx.save();
 }
 
+function CreateAsteroid(x, y) {
+    var asteroid = document.createElement("img");
+    asteroid.src = "./image/asteroid.png"
+    asteroid.id = "asteroid";
+    asteroid.style.left = (x.toString() + "px");
+    asteroid.style.top = (y.toString() + "px");
+
+    document.body.appendChild(asteroid);
+
+
+
+}
 
 function KeyDownHandler(e) {
     var correctLetter = false;
@@ -185,10 +204,8 @@ function KeyDownHandler(e) {
     if (isPressed) {
         if (!correctLetter) {
             RefreshScore(-1);
-
         }
     }
-
 }
 
 function KeyUpHandler(e) {
@@ -227,7 +244,7 @@ function StartScreen() {
     start.height = window.innerHeight;
     document.getElementById("container").appendChild(start);
     var ctx = start.getContext("2d");
-    ctx.globalAlpha = 0.4;
+    ctx.globalAlpha = 0.6;
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, start.width, start.height);
     return start;
@@ -245,13 +262,20 @@ function StartButton(startScreen, startGame) {
     var startButton = document.createElement("button");
     startButton.className = "startButton";
     startButton.innerHTML = "Start";
-    startButton.onclick = function() {
+    // startButton.onclick = function() {
+    //     paused = false;
+    //     startScreen.remove();
+    //     startGame.remove();
+    //     startButton.remove();
+    //     Initial();
+    // };
+    $(document).on('click', '.startButton', function() {
         paused = false;
         startScreen.remove();
         startGame.remove();
         startButton.remove();
         Initial();
-    };
+    });
     document.getElementById("container").appendChild(startButton);
 }
 
@@ -263,7 +287,7 @@ function SelectionScreen() {
 
     document.getElementById("container").appendChild(select);
     var ctx = select.getContext("2d");
-    ctx.globalAlpha = 0.4;
+    ctx.globalAlpha = 0.6;
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, select.width, select.height);
     return select;
@@ -273,9 +297,12 @@ function ReturnButton() {
     var returnButton = document.createElement("button");
     returnButton.className = "returnButton";
     returnButton.innerHTML = "Return";
-    returnButton.onclick = function() {
+    // returnButton.onclick = function() {
+    //     window.location = "./index.html";
+    // }
+    $(document).on('click', '.returnButton', function() {
         window.location = "./index.html";
-    }
+    });
     document.getElementById("container").appendChild(returnButton);
     return returnButton;
 }
@@ -284,14 +311,23 @@ function RestartButton(select, mission, returnButton) {
     var restartButton = document.createElement("button");
     restartButton.className = "restartButton";
     restartButton.innerHTML = "Restart";
-    restartButton.onclick = function() {
+    // restartButton.onclick = function() {
+    //     paused = false;
+    //     select.remove();
+    //     mission.remove();
+    //     returnButton.remove();
+    //     restartButton.remove();
+    //     Initial();
+    // };
+
+    $(document).on('click', '.restartButton', function() {
         paused = false;
         select.remove();
         mission.remove();
         returnButton.remove();
         restartButton.remove();
         Initial();
-    };
+    });
     document.getElementById("container").appendChild(restartButton);
 }
 

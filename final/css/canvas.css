@@ -2,10 +2,35 @@
     margin: 0;
 }
 
+@font-face {
+    font-family: "Bombardment";
+    src: url("../fonts/bombardment.3d-italic.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "TerminalGrotesque";
+    src: url("../fonts/terminal-grotesque.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "NightmarePills";
+    src: url("../fonts/NightmarePills-BV2w.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Oleto";
+    src: url("../fonts/Oleto.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf") format('truetype');
+}
+
 #canvas {
     display: block;
     position: relative;
-    z-index: -1;
+    z-index: -100;
 }
 
 #earth {
@@ -19,6 +44,15 @@
     z-index: 0;
 }
 
+#asteroid {
+    position: absolute;
+    margin: auto;
+    width: 3%;
+    /* top: 0; */
+    /* left: 0; */
+    z-index: 1;
+}
+
 .defender {
     position: absolute;
     top: 10%;
@@ -29,6 +63,7 @@
     z-index: 11;
     font-size: 108px;
     text-align: center;
+    font-family: Bombardment;
 }
 
 .select {
@@ -57,21 +92,27 @@
     z-index: 10;
     border-radius: 12px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-family: Calibri;
+    font-family: Oleto;
     background: none;
     color: #FFF;
 }
 
+.startButton:hover {
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
 .returnButton {
     position: absolute;
-    left: 35%;
+    left: 30%;
     top: 70%;
     border-color: #FFF;
     font-size: 48px;
     z-index: 10;
     border-radius: 12px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-family: Calibri;
+    font-family: Oleto;
     background: none;
     color: #FFF;
 }
@@ -79,18 +120,19 @@
 .returnButton:hover {
     color: black;
     background-color: white;
+    cursor: pointer;
 }
 
 .restartButton {
     position: absolute;
-    right: 35%;
+    right: 30%;
     top: 70%;
     border-color: #FFF;
     font-size: 48px;
     z-index: 10;
     border-radius: 12px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    font-family: Calibri;
+    font-family: Oleto;
     background: none;
     color: #FFF;
 }
@@ -98,6 +140,7 @@
 .restartButton:hover {
     color: black;
     background-color: white;
+    cursor: pointer;
 }
 
 .mission {
@@ -108,8 +151,9 @@
     margin-right: auto;
     color: #FFF;
     z-index: 10;
-    font-size: 72px;
+    font-size: 108px;
     text-align: center;
+    font-family: NightmarePills;
 }
 
 #score {
@@ -117,6 +161,8 @@
     top: 4%;
     right: 5%;
     font-size: 40px;
+    color: white;
+    font-family: Oleto;
 }
 
 #level {
@@ -124,6 +170,8 @@
     top: 4%;
     left: 5%;
     font-size: 40px;
+    color: white;
+    font-family: Oleto;
 }
 
 #container {
