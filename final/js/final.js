@@ -163,13 +163,13 @@ function UpdateAll() {
                 par.where.y += toCenterVector.magnitudeY * pos / 500000 * Math.pow(1.01, level - 1);
 
                 par.asteroid.style.left = (par.where.x - (par.asteroid.width / 2)).toString() + "px";
-                par.asteroid.style.top = (par.where.y - (par.asteroid.height / 2.2)).toString() + "px";
+                par.asteroid.style.top = (par.where.y - (par.asteroid.height / 2.3)).toString() + "px";
 
 
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.strokeStyle = "#888";
-                ctx.lineWidth = 6;
+                ctx.lineWidth = 5;
                 ctx.strokeText(par.letter, par.where.x, par.where.y);
                 ctx.fillStyle = "white";
                 ctx.font = par.font;
