@@ -8,13 +8,8 @@
 }
 
 @font-face {
-    font-family: "TerminalGrotesque";
-    src: url("../fonts/terminal-grotesque.ttf") format('truetype');
-}
-
-@font-face {
     font-family: "NightmarePills";
-    src: url("../fonts/NightmarePills-BV2w.ttf") format('truetype');
+    src: url("../fonts/NightmarePills-BV2w.ttf")format('truetype');
 }
 
 @font-face {
@@ -44,12 +39,37 @@
     z-index: -100;
 }
 
+#lives {
+    position: absolute;
+    top: 4%;
+    text-align: center;
+    width: 100%;
+    font-size: 40px;
+    color: white;
+    font-family: Oleto;
+}
+
+#score {
+    position: absolute;
+    top: 4%;
+    right: 5%;
+    font-size: 40px;
+    color: white;
+    font-family: Oleto;
+}
+
+#level {
+    position: absolute;
+    top: 4%;
+    left: 5%;
+    font-size: 40px;
+    color: white;
+    font-family: Oleto;
+}
+
 #asteroid {
     position: absolute;
     margin: auto;
-    /* width: 3%; */
-    /* top: 0; */
-    /* left: 0; */
     z-index: -2;
 }
 
@@ -156,26 +176,9 @@
     font-family: NightmarePills;
 }
 
-#score {
-    position: absolute;
-    top: 4%;
-    right: 5%;
-    font-size: 40px;
-    color: white;
-    font-family: Oleto;
-}
-
-#level {
-    position: absolute;
-    top: 4%;
-    left: 5%;
-    font-size: 40px;
-    color: white;
-    font-family: Oleto;
-}
-
 #container {
     position: relative;
+    margin: auto;
 }
 
 html {

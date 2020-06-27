@@ -1,48 +1,53 @@
-var canvas, ctx, divScore, divLevel, centerX, centerY, radius, score, level, particles, center, numparticles, playFor;
+var canvas, ctx, divScore, divLevel, divLives, radius, score, level, lives,
+    particles, center, numparticles, playFor, addLifeFlag, minScorevar, globalTime, startTime;
 var isPressed = false;
-var globalTime;
-var startTime;
 var paused = true;
 
+// Create start menu
 function PageLoad() {
     var ss = StartScreen();
-    var sg = StartGame();
+    var sg = StartGameTitle();
     StartButton(ss, sg);
 }
 
 PageLoad();
 
+// Initialize global variables
 function Initial() {
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    document.body.style.overflow = "hidden";
+    canvas = $("#canvas")[0];
+    ctx = canvas.getContext('2d');
+    canvas.width = $(window).width();
+    canvas.height = $(window).height();
+    $("body").css({ "overflow": "hidden" });
 
-    divScore = document.getElementById("score");
-    divLevel = document.getElementById("level");
+    divScore = $("#score")[0];
+    divLevel = $("#level")[0];
+    divLives = $("#lives")[0];
 
-    centerX = canvas.width / 2;
-    centerY = canvas.height / 2;
     radius = 10;
     score = 0;
     level = 0;
+    lives = 1;
     numparticles = 20;
     playFor = 20;
+    addLifeFlag = false;
+    minScore = -1;
     particles = []
 
     center = {
-        x: centerX,
-        y: centerY
+        x: canvas.width / 2,
+        y: canvas.height / 2
     };
-
-
 }
 
 Initial();
 
+
+// Create letetr particles
 function AddParticles(when, where, howLong, radius, font, letter, velocity, asteroid) {
     var par;
+
+    // Create letter particles list
     particles.push(par = {
         when: when,
         where: where,
@@ -57,7 +62,7 @@ function AddParticles(when, where, howLong, radius, font, letter, velocity, aste
 }
 
 
-
+// Main game loop
 function MainLoop(time) {
     if (startTime == undefined) {
         startTime = time;
@@ -65,23 +70,27 @@ function MainLoop(time) {
     globalTime = time - startTime;
     if (!paused) {
         UpdateAll();
-
     }
-
     requestAnimationFrame(MainLoop);
 }
 requestAnimationFrame(MainLoop);
 
+
 function AddEventListener() {
-    document.addEventListener('keydown', KeyDownHandler);
-    document.addEventListener('keyup', KeyUpHandler);
-    window.addEventListener('resize', ResizeHandler);
+    $(document).keydown(KeyDownHandler);
+    $(document).keyup(KeyUpHandler);
 }
 AddEventListener();
 
 function Setup() {
+
+    // Add level everytime setup is called
     level++;
+
+    // Initial particle amount
     numparticles = Math.floor(numparticles * Math.pow(1.05, level - 1));
+
+    // The interval of time the particles should be generated in 
     playFor *= Math.pow(1.03, level - 1);
 
     for (var i = 0; i < numparticles; i++) {
@@ -102,19 +111,21 @@ function Setup() {
             px = canvas.width;
             py = Math.floor(Math.random() * canvas.height);
         }
-        var rd = Math.floor(Math.random() * 8 + 15);
+        var radius = Math.floor(Math.random() * 8 + 15);
 
-        var asteroid = document.createElement("img");
-        asteroid.src = "./image/asteroid_gray.png"
-        asteroid.id = "asteroid";
-        asteroid.style.left = (px.toString() + "px");
-        asteroid.style.top = (py.toString() + "px");
-        asteroid.style.display = "none";
-        console.log(rd / asteroid.width);
-        asteroid.style.width = (rd / asteroid.width * 100).toString() + "%";
+        // Create asteroid image
+        var asteroid = $("<img />", {
+            "src": "./image/asteroid_gray.png",
+            id: "asteroid",
+            css: {
+                left: (px.toString() + "px"),
+                top: (py.toString() + "px"),
+                display: "none"
+            }
 
-        document.body.appendChild(asteroid);
-
+        });
+        asteroid.css("width", (radius / asteroid.prop("naturalWidth") * 100).toString() + "%");
+        $(document.body).append(asteroid);
 
         AddParticles(
             Math.floor(Math.random() * playFor * 1000), {
@@ -122,47 +133,75 @@ function Setup() {
                 y: py
             },
             Math.floor(Math.random() * 10 * 100 + 1000),
-            rd,
-            (rd - 0.5).toString() + "pt Roboto",
+            radius,
+            (radius - 0.5).toString() + "pt Roboto",
             String.fromCharCode(Math.random() * 26 + 65),
             Math.floor(Math.random() * 150 + 50),
             asteroid
         );
     }
+    // Sort ascending by time, so that the letters disppear from those appeared first
     particles.sort((a, b) => parseFloat(a.when) - parseFloat(b.when));
 }
-
-
 
 Setup();
 
 function UpdateAll() {
+    // Refresh canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    divScore.textContent = "Score " + score;
+
+    // Add lives when score is the multiple of 50
+    // Make sure it does not re-add if we typed wrong and the score is the multiple of 50 again
+    if (score > minScore) {
+        minScore = score;
+    }
+    if (score % 50 == 49 && score == minScore) {
+        addLifeFlag = true;
+    }
+    if (addLifeFlag && score % 50 == 0) {
+        lives++;
+        addLifeFlag = false;
+    }
+
+    // Print level, score, lives on screen
     divLevel.textContent = "Level " + level;
+    divScore.textContent = "Score " + score;
+    divLives.textContent = "Lives " + lives;
 
     for (var i = 0; i < particles.length; i++) {
         var par = particles[i];
+
+        // Check if it is time for par to be active
         if (!par.moving) {
             if (par.when < globalTime) {
                 par.moving = true;
             }
         }
+
+
         if (par.moving) {
+
+            // Get time elapsed after par activates
             var pos = globalTime - par.when;
+
+            // Get vector to center 
             var data = DistanceBetweenTwoPoints(par.where.x, par.where.y, center.x, center.y);
             var velocity = 200
-            var toCenterVector = new Vector(velocity, data.angle);
-            par.asteroid.style.display = "inline-block";
+            var toCenterVector = new ReturnVector(velocity, data.angle);
 
+            // Show asteroid
+            par.asteroid.css("display", 'inline-block');
+
+            // Calculate distance between center point
             if (data.distance >= 35) {
+
+                // Move asteroids
                 par.where.x += toCenterVector.magnitudeX * pos / 500000 * Math.pow(1.01, level - 1);
                 par.where.y += toCenterVector.magnitudeY * pos / 500000 * Math.pow(1.01, level - 1);
+                par.asteroid.css("left", (par.where.x - (par.asteroid.width() / 2)).toString() + "px");
+                par.asteroid.css("top", (par.where.y - (par.asteroid.height() / 2.3)).toString() + "px");
 
-                par.asteroid.style.left = (par.where.x - (par.asteroid.width / 2)).toString() + "px";
-                par.asteroid.style.top = (par.where.y - (par.asteroid.height / 2.3)).toString() + "px";
-
-
+                // Move letter particles
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.strokeStyle = "#888";
@@ -171,33 +210,36 @@ function UpdateAll() {
                 ctx.fillStyle = "white";
                 ctx.font = par.font;
                 ctx.fillText(par.letter, par.where.x, par.where.y);
-                // CreateAsteroid(par.where.x, par.where.y);
-                // ctx.beginPath();
-                // ctx.arc(par.where.x, par.where.y, par.radius, 0, 2 * Math.PI, false);
-                // ctx.strokeStyle = "white";
-                // ctx.stroke();
 
             } else {
-                document.body.removeChild(par.asteroid);
+
+                // If distance is less than 35(radius of the Earth), destroy asteroid and minus one life
+                par.asteroid.remove();
                 particles.splice(i, 1);
-                GameOver();
-                var ss = SelectionScreen();
-                var rb = ReturnButton();
-                var mf = MissionFailed();
-                RestartButton(ss, mf, rb);
-                paused = true;
+                lives--;
+
+                // Gameover when lives reach 0
+                if (lives == 0) {
+                    GameOver();
+                    var ss = SelectionScreen();
+                    var rb = ReturnButton();
+                    var mf = MissionFailed();
+                    RestartButton(ss, mf, rb);
+                    paused = true;
+                }
             }
         }
     }
+
+    // Initial particles when one level is finished
     if (particles.length == 0) {
         Setup();
         startTime = undefined;
     }
-    ctx.save();
 }
 
 
-
+// Get input key, add points when the corresponding letter asteroid is active
 function KeyDownHandler(e) {
     var correctLetter = false;
     isPressed = true;
@@ -212,6 +254,7 @@ function KeyDownHandler(e) {
             }
         }
     }
+    // Minus points if typed the wrong key
     if (isPressed) {
         if (!correctLetter) {
             RefreshScore(-1);
@@ -219,28 +262,23 @@ function KeyDownHandler(e) {
     }
 }
 
+// Make sure key press is only recognized one time
 function KeyUpHandler(e) {
     isPressed = false;
     correctLetter = false;
 }
 
-function ResizeHandler() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    center.x = canvas.width / 2;
-    center.y = canvas.height / 2;
-}
 
 function RefreshScore(amount) {
     score += amount;
 }
 
 function RemoveEventListener() {
-    document.removeEventListener('keydown', KeyDownHandler);
-    document.removeEventListener('keyup', KeyUpHandler);
-    window.removeEventListener('resize', ResizeHandler);
+    $(document).off("keydown", KeyDownHandler);
+    $(document).off("keyup", KeyUpHandler);
 }
 
+// Reset global variable and event listeners
 function GameOver() {
     for (let i = 0; i < particles.length; i++) {
         particles[i].asteroid.remove();
@@ -248,15 +286,14 @@ function GameOver() {
     RemoveEventListener();
     Initial();
     AddEventListener();
-
 }
 
+// Create start screen
 function StartScreen() {
-    var start = document.createElement("canvas");
-    start.className = "start";
-    start.width = window.innerWidth;
-    start.height = window.innerHeight;
-    document.getElementById("container").appendChild(start);
+    var start = $("<canvas/>", { class: "start" })[0];
+    start.width = $(window).width();
+    start.height = $(window).height();
+    $("#container").append(start);
     var ctx = start.getContext("2d");
     ctx.globalAlpha = 0.6;
     ctx.fillStyle = "black";
@@ -264,25 +301,16 @@ function StartScreen() {
     return start;
 }
 
-function StartGame() {
-    var game = document.createElement("div");
-    game.className = "defender";
-    game.innerHTML = "Earth Defender";
-    document.getElementById("container").appendChild(game);
-    return game;
+// Start game title
+function StartGameTitle() {
+    var title = $("<div/>", { class: "defender", text: "Earth Defender" });
+    $("#container").append(title);
+    return title;
 }
 
+// Start game button
 function StartButton(startScreen, startGame) {
-    var startButton = document.createElement("button");
-    startButton.className = "startButton";
-    startButton.innerHTML = "Start";
-    // startButton.onclick = function() {
-    //     paused = false;
-    //     startScreen.remove();
-    //     startGame.remove();
-    //     startButton.remove();
-    //     Initial();
-    // };
+    var startButton = $("<button/>", { class: "startButton", text: "Start" });
     $(document).on('click', '.startButton', function() {
         paused = false;
         startScreen.remove();
@@ -290,16 +318,16 @@ function StartButton(startScreen, startGame) {
         startButton.remove();
         Initial();
     });
-    document.getElementById("container").appendChild(startButton);
+    $("#container").append(startButton);
 }
 
+// Create selection screen
 function SelectionScreen() {
-    var select = document.createElement("canvas");
-    select.className = "select";
-    select.width = window.innerWidth;
-    select.height = window.innerHeight;
+    var select = $("<canvas/>", { class: "select" })[0];
+    select.width = $(window).width();
+    select.height = $(window).height();
 
-    document.getElementById("container").appendChild(select);
+    $("#container").append(select);
     var ctx = select.getContext("2d");
     ctx.globalAlpha = 0.6;
     ctx.fillStyle = "black";
@@ -307,33 +335,19 @@ function SelectionScreen() {
     return select;
 }
 
+// Create return button
 function ReturnButton() {
-    var returnButton = document.createElement("button");
-    returnButton.className = "returnButton";
-    returnButton.innerHTML = "Return";
-    // returnButton.onclick = function() {
-    //     window.location = "./index.html";
-    // }
+    var returnButton = $("<button/>", { class: "returnButton", text: "Return" });
     $(document).on('click', '.returnButton', function() {
         window.location = "./index.html";
     });
-    document.getElementById("container").appendChild(returnButton);
+    $("#container").append(returnButton);
     return returnButton;
 }
 
+// Create restart button
 function RestartButton(select, mission, returnButton) {
-    var restartButton = document.createElement("button");
-    restartButton.className = "restartButton";
-    restartButton.innerHTML = "Restart";
-    // restartButton.onclick = function() {
-    //     paused = false;
-    //     select.remove();
-    //     mission.remove();
-    //     returnButton.remove();
-    //     restartButton.remove();
-    //     Initial();
-    // };
-
+    var restartButton = $("<button/>", { class: "restartButton", text: "Restart" });
     $(document).on('click', '.restartButton', function() {
         paused = false;
         select.remove();
@@ -342,17 +356,17 @@ function RestartButton(select, mission, returnButton) {
         restartButton.remove();
         Initial();
     });
-    document.getElementById("container").appendChild(restartButton);
+    $("#container").append(restartButton);
 }
 
+// Selection screen title
 function MissionFailed() {
-    var mission = document.createElement("div");
-    mission.className = "mission";
-    mission.innerHTML = "Mission Failed"
-    document.getElementById("container").appendChild(mission);
+    var mission = $("<div/>", { class: "mission", text: "Mission Failed" });
+    $("#container").append(mission);
     return mission;
 }
 
+// Calculate distance
 function DistanceBetweenTwoPoints(x1, y1, x2, y2) {
     var x = x2 - x1,
         y = y2 - y1;
@@ -364,9 +378,8 @@ function DistanceBetweenTwoPoints(x1, y1, x2, y2) {
     }
 }
 
-function Vector(magnitude, angle) {
+function ReturnVector(magnitude, angle) {
     var angleRadians = (angle * Math.PI) / 180;
-
     this.magnitudeX = magnitude * Math.cos(angleRadians);
     this.magnitudeY = magnitude * Math.sin(angleRadians);
 }
