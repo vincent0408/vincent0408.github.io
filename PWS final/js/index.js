@@ -3,6 +3,9 @@ var user = localStorage['User'];
 if (user == null) {
     window.location.href = './login.html';
 
+} else {
+    var body = document.getElementsByTagName('body')[0];
+    body.style.visibility = 'visible'
 }
 localStorage.removeItem('User');
 
