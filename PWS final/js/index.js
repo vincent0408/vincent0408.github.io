@@ -1,10 +1,10 @@
 var blocks = document.getElementsByClassName('h5 mb-0 font-weight-bold text-gray-800')
 var user = localStorage['User'];
-// if (user == null) {
-//     window.location.href = './login.html';
+if (user == null) {
+    window.location.href = './login.html';
 
-// }
-// localStorage.removeItem('User');
+}
+localStorage.removeItem('User');
 
 username_display = document.getElementsByClassName('mr-2 d-none d-lg-inline text-gray-600 small')[0]
 username_display.textContent = user
