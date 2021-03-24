@@ -6,14 +6,10 @@ console.log(user)
 firebase.database().ref().on('value', snapshot => {
     let snap = snapshot.val()
     var columns = Object.keys(snap[1])
-    console.log(columns)
-    for (var i = 0; i < snap.lengths; i++) {
+
+    for (var i = 0; i < columns.length; i++) {
         blocks[i].textContent = snap[1][columns[i]]
 
     }
-
-    // Object.keys(snap).forEach(function(key) {
-    //     console.log('Key : ' + key + ', Value : ' + snap[key])
-    // })
 
 });
