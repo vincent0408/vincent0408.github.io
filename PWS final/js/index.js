@@ -8,6 +8,9 @@ if (user == null) {
     body.style.visibility = 'visible'
 }
 localStorage.removeItem('User');
+var body = document.getElementsByTagName('body')[0];
+
+body.style.visibility = 'visible'
 
 username_display = document.getElementsByClassName('mr-2 d-none d-lg-inline text-gray-600 small')[0]
 username_display.textContent = user

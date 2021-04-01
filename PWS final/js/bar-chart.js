@@ -28,34 +28,34 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Area Chart Example
-var ctx = document.getElementById("myAreaChart");
+var ctx = document.getElementById("BarChart");
 var user = localStorage['User'];
 
-user = 'b06703012'
 var len
 var arr = [];
 chart.database().ref().on('value', snapshot => {
         let snap = snapshot.val()
         time_series = Object.keys(snap)
+        time_series.sort()
         len = time_series.length
         for (var i = 0; i < len; i++) {
             arr.push(snap[time_series[i]][user])
         }
-        createChart()
+        createChart1()
     }
 
 );
 
 
-function createChart() {
+function createChart1() {
     var myLineChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: time_series,
             datasets: [{
-                label: "Earnings",
+                label: "還不是啥",
                 lineTension: 0.3,
-                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                backgroundColor: "#ffef2e",
                 borderColor: "rgba(78, 115, 223, 1)",
                 pointRadius: 3,
                 pointBackgroundColor: "rgba(78, 115, 223, 1)",
