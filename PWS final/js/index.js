@@ -1,13 +1,13 @@
 var blocks = document.getElementsByClassName('h5 mb-0 font-weight-bold text-gray-800')
 var user = localStorage['User'];
-if (user == null) {
-    window.location.href = './login.html';
+// if (user == null) {
+//     window.location.href = './login.html';
 
-} else {
-    var body = document.getElementsByTagName('body')[0];
-    body.style.visibility = 'visible'
-}
-localStorage.removeItem('User');
+// } else {
+//     var body = document.getElementsByTagName('body')[0];
+//     body.style.visibility = 'visible'
+// }
+// localStorage.removeItem('User');
 var body = document.getElementsByTagName('body')[0];
 
 body.style.visibility = 'visible'

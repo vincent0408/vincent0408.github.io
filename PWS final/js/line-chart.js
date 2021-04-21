@@ -30,6 +30,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 // Area Chart Example
 var ctx1 = document.getElementById("LineChart");
 var user = localStorage['User'];
+console.log(user)
 
 var len
 var arr = [];
@@ -39,6 +40,7 @@ chart.database().ref().on('value', snapshot => {
         time_series.sort()
         len = time_series.length
         for (var i = 0; i < len; i++) {
+            console.log(snap[time_series[i]][user])
             arr.push(snap[time_series[i]][user])
         }
 

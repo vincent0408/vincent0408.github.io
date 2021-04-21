@@ -55,7 +55,7 @@ function createChart1() {
             datasets: [{
                 label: "還不是啥",
                 lineTension: 0.3,
-                backgroundColor: "#ffef2e",
+                backgroundColor: "#ffef2f",
                 borderColor: "rgba(78, 115, 223, 1)",
                 pointRadius: 3,
                 pointBackgroundColor: "rgba(78, 115, 223, 1)",
