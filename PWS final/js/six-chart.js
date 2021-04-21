@@ -123,6 +123,14 @@ var colors = ["red", "yellow", "green", "blue", "purple", "black"]
 
 var chart1, chart2, chart3, chart4, chart5, chart6;
 
+function rdten() {
+    var ran = []
+    for (var i = 0; i < 10; i++) {
+        ran.push(Math.floor(Math.random() * 100));
+    }
+    return ran
+}
+
 function DrawSixCharts(col) {
     var ctx1 = document.getElementById("sixChartOne");
     // var user = localStorage['User'];
@@ -133,15 +141,16 @@ function DrawSixCharts(col) {
     chart.database().ref().on('value', snapshot => {
 
             if (chart1) {
-                let snap = snapshot.val()
-                time_series = Object.keys(snap)
-                time_series.sort()
-                len = time_series.length
-                for (var i = 0; i < len; i++) {
-                    arr1.push(snap[time_series[i]]['b06703042'])
-                }
-                console.log(arr1)
-                chart1.data.datasets[0].data = arr1
+                // let snap = snapshot.val()
+                // time_series = Object.keys(snap)
+                // time_series.sort()
+                // len = time_series.length
+                // for (var i = 0; i < len; i++) {
+                //     arr1.push(snap[time_series[i]]['b06703042'])
+                // }
+                // console.log(arr1)
+                // chart1.data.datasets[0].data = arr1
+                chart1.data.datasets[0].data = rdten()
                 chart1.data.datasets[0].backgroundColor = col
                 chart1.update()
             } else {
@@ -167,6 +176,7 @@ function DrawSixCharts(col) {
             len = time_series.length
             if (chart2) {
                 chart2.data.datasets[0].backgroundColor = col
+                chart2.data.datasets[0].data = rdten()
                 chart2.update()
             } else {
                 let snap = snapshot.val()
@@ -192,6 +202,7 @@ function DrawSixCharts(col) {
             len = time_series.length
             if (chart3) {
                 chart3.data.datasets[0].backgroundColor = col
+                chart3.data.datasets[0].data = rdten()
                 chart3.update()
             } else {
                 let snap = snapshot.val()
@@ -217,6 +228,7 @@ function DrawSixCharts(col) {
             len = time_series.length
             if (chart4) {
                 chart4.data.datasets[0].backgroundColor = col
+                chart4.data.datasets[0].data = rdten()
                 chart4.update()
             } else {
                 let snap = snapshot.val()
@@ -242,6 +254,7 @@ function DrawSixCharts(col) {
             len = time_series.length
             if (chart5) {
                 chart5.data.datasets[0].backgroundColor = col
+                chart5.data.datasets[0].data = rdten()
                 chart5.update()
             } else {
                 let snap = snapshot.val()
@@ -267,6 +280,7 @@ function DrawSixCharts(col) {
         len = time_series.length
         if (chart6) {
             chart6.data.datasets[0].backgroundColor = col
+            chart6.data.datasets[0].data = rdten()
             chart6.update()
         } else {
             let snap = snapshot.val()
@@ -286,6 +300,7 @@ function DrawSixCharts(col) {
 
 
 
+DrawSixCharts("red")
 
 var dropdown_button = document.getElementById("dropdown-button");
 var hw1 = document.getElementById("dropdown-hw1")
