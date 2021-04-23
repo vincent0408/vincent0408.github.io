@@ -109,10 +109,26 @@ var x = createChart2(document.getElementById("StackedBarChart"))
 
 function createChart1(ctx) {
     var myChart = new Chart(ctx, {
-        type: 'bar',
+
         data: {
             labels: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'],
             datasets: [{
+                    type: 'line',
+                    label: "還不是啥",
+                    fill: false,
+                    lineTension: 0.3,
+                    borderColor: "rgba(78, 115, 223, 1)",
+                    pointRadius: 3,
+                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                    pointBorderColor: "rgba(78, 115, 223, 1)",
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    data: ['23', '12', '56', '33', '59', '47', '1', '22', '47', '12']
+                }, {
+                    type: 'bar',
                     label: "還不是啥",
                     lineTension: 0.3,
                     backgroundColor: "orange",
@@ -128,6 +144,7 @@ function createChart1(ctx) {
                     data: ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1']
                 },
                 {
+                    type: 'bar',
                     label: "還不是啥",
                     lineTension: 0.3,
                     backgroundColor: "purple",
@@ -142,6 +159,7 @@ function createChart1(ctx) {
                     pointBorderWidth: 2,
                     data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
                 }
+
             ],
         },
         options: {
@@ -167,18 +185,18 @@ function createChart1(ctx) {
                         drawBorder: false
                     },
                     ticks: {
-                        maxTicksLimit: 7
+                        // maxTicksLimit: 7
                     }
                 }],
                 yAxes: [{
                     stacked: true,
                     ticks: {
-                        maxTicksLimit: 5,
+                        // maxTicksLimit: 5,
                         padding: 10,
                         // Include a dollar sign in the ticks
-                        callback: function(value, index, values) {
-                            return '$' + number_format(value);
-                        }
+                        // callback: function(value, index, values) {
+                        //     return '$' + number_format(value);
+                        // }
                     },
                     gridLines: {
                         color: "rgb(234, 236, 244)",
@@ -206,12 +224,12 @@ function createChart1(ctx) {
                 intersect: false,
                 mode: 'index',
                 caretPadding: 10,
-                callbacks: {
-                    label: function(tooltipItem, chart) {
-                        var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                        return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
-                    }
-                }
+                // callbacks: {
+                //     label: function(tooltipItem, chart) {
+                //         var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                //         return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                //     }
+                // }
             }
         }
     })
