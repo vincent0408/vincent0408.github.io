@@ -9,18 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>SB Admin 2 - Dashboard</title>
 
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -36,14 +32,14 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">SB <sup>2</sup></div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -125,7 +121,7 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
@@ -137,6 +133,13 @@
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card">
+                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
+                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
             </div>
 
         </ul>
@@ -152,11 +155,9 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -308,8 +309,8 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+                                <a class="dropdown-item" href="./reset_password.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Reset Password
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
@@ -319,7 +320,7 @@
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
+                                    <i id="logout" class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
                                 </a>
                             </div>
                         </li>
@@ -333,67 +334,269 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-                    <p id='loading' style="text-align:center; color:red; white-space:pre-wrap;">Page loading, please wait...</p>
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
 
-                                    <thead>
-                                        <tr>
-                                            <th>When</th>
-                                            <th>ID</th>
-                                            <th>Status</th>
-                                            <th>Problem</th>
-                                            <th>Time</th>
-                                            <th>Memory</th>
-                                            <th>Language</th>
-                                            <th>Author</th>
-                                            <th>HW</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>When</th>
-                                            <th>ID</th>
-                                            <th>Status</th>
-                                            <th>Problem</th>
-                                            <th>Time</th>
-                                            <th>Memory</th>
-                                            <th>Language</th>
-                                            <th>Author</th>
-                                            <th>HW</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                    <!-- 6 charts -->
+                    <div class="col-lg-12 col-mb-8">
+                        <div class="card shadow">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                <div class="dropdown no-arrow">
+                                    <div class="btn-group">
+                                        <button id="dropdown-button" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Homework 1
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <button id="dropdown-hw1" class="dropdown-item" type="button">Homework 1</button>
+                                            <button id="dropdown-hw2" class="dropdown-item" type="button">Homework 2</button>
+                                            <button id="dropdown-hw3" class="dropdown-item" type="button">Homework 3</button>
+                                            <button id="dropdown-hw4" class="dropdown-item" type="button">Homework 4</button>
+                                            <button id="dropdown-hw5" class="dropdown-item" type="button">Homework 5</button>
+                                            <button id="dropdown-hw6" class="dropdown-item" type="button">Homework 6</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div classs="row col-lg-12 mb-8">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-12 mb-8">
+                                            <div class="card">
+                                                <div id="hw-total" class="card-body"> L</div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="chart-area">
+                                                        <canvas id="overview"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- layer 1-->
+                            <div classs="row col-lg-6 mb-4">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div id="hw-01" class="card-body"></div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="chart-area">
+                                                        <canvas id="sixChartOne"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div id="hw-02" class="card-body"></div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="chart-area">
+                                                        <canvas id="sixChartTwo"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- layer 2 -->
+                            <div classs="row col-12">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div id="hw-03" class="card-body"></div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="chart-area">
+                                                        <canvas id="sixChartThree"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div id="hw-04" class="card-body"></div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="chart-area">
+                                                        <canvas id="sixChartFour"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <!-- layer 3 -->
+                            <div classs="row col-12">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div id="hw-05" class="card-body"></div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="chart-area">
+                                                        <canvas id="sixChartFive"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <div class="card">
+                                                <div id="hw-06" class="card-body"></div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="chart-area">
+                                                        <canvas id="sixChartSix"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <!-- Content Row -->
+                        <div class="row">
+
+                            <!-- Content Column -->
+                            <div class="col-lg-6 mb-4">
+
+
+
+                            </div>
+
+                            <div class="col-lg-6 mb-4">
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Bar Chart -->
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="StackedBarChart"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Bar Chart -->
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="StackedBarChart1"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
                 </div>
-                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+
+
+
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- /.container-fluid -->
+
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2020</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -416,7 +619,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login.html" onclick="(function(){localStorage.removeItem('User');})()">Logout</a>
                 </div>
             </div>
         </div>
@@ -433,29 +636,55 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <!-- <script src="js/demo/datatables-demo.js"></script> -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
 
+
     <script>
         // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         var firebaseConfig = {
-            apiKey: "AIzaSyBLjdqkGIMqjpeU2O16QO_7NXRB1lWZlU4",
-            authDomain: "pws-final-project-tab.firebaseapp.com",
-            databaseURL: "https://pws-final-project-tab-default-rtdb.firebaseio.com",
-            projectId: "pws-final-project-tab",
-            storageBucket: "pws-final-project-tab.appspot.com",
-            messagingSenderId: "289549501310",
-            appId: "1:289549501310:web:3996bf11c95e4b99d1292f"
+            apiKey: "AIzaSyCGsLFd-67jpihUWqdc5MOVv6Lobo3mLJM",
+            authDomain: "data-personal-histogram-label.firebaseapp.com",
+            databaseURL: "https://data-personal-histogram-label-default-rtdb.firebaseio.com",
+            projectId: "data-personal-histogram-label",
+            storageBucket: "data-personal-histogram-label.appspot.com",
+            messagingSenderId: "678908018586",
+            appId: "1:678908018586:web:37ec027dcf339ef3658423"
         };
+
+
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
-    <script src="js/tables.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig2 = {
+            apiKey: "AIzaSyCHDRcZbzdUf9SBq-SYbMxhUQohSOU04Vg",
+            authDomain: "data-personal-histogram.firebaseapp.com",
+            databaseURL: "https://data-personal-histogram-default-rtdb.firebaseio.com",
+            projectId: "data-personal-histogram",
+            storageBucket: "data-personal-histogram.appspot.com",
+            messagingSenderId: "849374921172",
+            appId: "1:849374921172:web:55b30f672b0b9aec691641"
+        };
+
+
+
+        // Initialize Firebase
+        var chart = firebase.initializeApp(firebaseConfig2, 'Chart');
+    </script>
+
+    <!-- <script src="js/index.js"></script> -->
+
+    <script src="js/test4.js"></script>
+    <!-- <script src="js/stackedbarplot.js"></script> -->
+    <!-- Page level custom scripts -->
+
+
 
 </body>
 
