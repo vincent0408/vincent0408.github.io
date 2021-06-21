@@ -29,7 +29,7 @@ firebase.database().ref().on('value', snapshot => {
 })
 
 document.getElementById('submit').onclick = function() {
-    if (Math.abs(document.getElementById('answer').value - 1) === 0) {
+    if (Math.abs(document.getElementById('answer').value - 11.1249) <= 0.0002) {
 
         var fadeEffect = setInterval(function() {
             if (!fadeTarget.style.opacity) {

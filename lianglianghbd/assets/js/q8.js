@@ -25,7 +25,7 @@ firebase.database().ref().on('value', snapshot => {
 })
 
 document.getElementById('submit').onclick = function() {
-    if (document.getElementById('answer').value == '1101') {
+    if (document.getElementById('answer').value == '29') {
         firebase.database().ref('question').update({ q8: 1 })
         document.getElementById('secret').classList.add('active')
         document.getElementById('secret').classList.remove('disabled')
