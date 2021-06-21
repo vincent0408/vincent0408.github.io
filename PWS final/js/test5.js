@@ -11,9 +11,12 @@ function createChart(ctx, label, data, title, col) {
             labels: label,
             datasets: [{
                 label: title,
-                data: data
+                data: data,
+                backgroundColor: 'rgba(255, 155, 0, 0.2)',
             }],
+
         },
+
         options: {
 
             maintainAspectRatio: false,

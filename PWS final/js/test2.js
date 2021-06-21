@@ -248,7 +248,7 @@ function createChart(ctx, label, data, hw_name) {
                         display: false,
                         drawBorder: false
                     },
-                    ticks: { maxTicksLimit: 7 }
+                    //ticks: { maxTicksLimit: 7 }
                 }],
                 yAxes: [{
                     ticks: {
@@ -264,7 +264,7 @@ function createChart(ctx, label, data, hw_name) {
                     }
                 }],
             },
-            legend: {},
+            legend: { display: true },
             tooltips: {
                 backgroundColor: "rgb(255,255,255)",
                 bodyFontColor: "#858796",
