@@ -1,0 +1,58 @@
+.tile1,
+.tile2,
+.tile3,
+.tile4,
+.tile5,
+.tile6,
+.tile7,
+.tile8,
+.tile9,
+.tile9-1 {
+    display: table-cell;
+    width: 240px;
+    height: 240px;
+    border: 1px solid white;
+    background: url("../../images/all.png");
+    cursor: pointer;
+}
+
+.tile1 {
+    background-position: left top;
+}
+
+.tile2 {
+    background-position: center top;
+}
+
+.tile3 {
+    background-position: right top;
+}
+
+.tile4 {
+    background-position: left center;
+}
+
+.tile5 {
+    background-position: center center;
+}
+
+.tile6 {
+    background-position: right center;
+}
+
+.tile7 {
+    background-position: left bottom;
+}
+
+.tile8 {
+    background-position: center bottom;
+}
+
+.tile9 {
+    background: white;
+    cursor: default;
+}
+
+.tile9-1 {
+    background-position: right bottom;
+}

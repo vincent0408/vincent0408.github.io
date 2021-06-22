@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/pages/game.css">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 </head>
 
@@ -129,119 +130,49 @@
             </header>
 
             <div class="page-heading">
-                <h3>Q7、妳最大的敵人，他又回來了</h3>
+                <h3>挑戰題、解開有提示，雖然妳搞不好已經知道了</h3>
             </div>
             <div class="page-content">
                 <section class="row">
                     <div class="col-12 col-lg-12">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-12 col-xl-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>欸嘿是我啦喨淇</h4>
-                                    </div>
-                                    <div class="card-body">
-
-                                        <img id='forest' style="visibility: hidden;" src="./assets/images/deadforest.png" style="width: 100%;object-fit: cover;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>妳真的會嘛😰</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <p>今天培瑜買了一個歐式買權，S=60、K=50、r=0.1、q=0.01、T=0.25、N(d1) = 0.9821、N(d2) = 0.9772，請問透過BS Model，培瑜買的選擇權應該價格訂多少才合理？
-                                        </p>
-                                        <input type="text" id="answer" class="form-control round" placeholder="四捨五入至小數點後四位">
-                                        <button id='submit' class="btn btn-outline-danger rounded-pill mt-3">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-xl-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>108-2 被當比例</h4>
+                                        <h4>小琉球❤️</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class='row'>
-                                            <div class="col-12 ">
-                                                <canvas id="pie1" style="height: 200%;"></canvas>
-                                            </div>
+
+                                            <!-- Sliding Puzzle by 101Computing - www.101computing.net/sliding-puzzle/-->
+                                            <center>
+                                                <div id="table" style="display: table;">
+                                                    <div id="row1" style="display: table-row;">
+                                                        <div id="cell11" class="tile1" onClick="clickTile(1,1);"></div>
+                                                        <div id="cell12" class="tile2" onClick="clickTile(1,2);"></div>
+                                                        <div id="cell13" class="tile3" onClick="clickTile(1,3);"></div>
+                                                    </div>
+                                                    <div id="row2" style="display: table-row;">
+                                                        <div id="cell21" class="tile4" onClick="clickTile(2,1);"></div>
+                                                        <div id="cell22" class="tile5" onClick="clickTile(2,2);"></div>
+                                                        <div id="cell23" class="tile6" onClick="clickTile(2,3);"></div>
+                                                    </div>
+                                                    <div id="row3" style="display: table-row;">
+                                                        <div id="cell31" class="tile7" onClick="clickTile(3,1);"></div>
+                                                        <div id="cell32" class="tile8" onClick="clickTile(3,2);"></div>
+                                                        <div id="cell33" class="tile9" onClick="clickTile(3,3);"></div>
+                                                    </div>
+                                                </div>
+                                                <button onClick="shuffle();">New Game</button>
+                                            </center>
+
 
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-xl-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>109-1 被當比例</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class='row'>
-                                            <div class="col-12 ">
-                                                <canvas id="pie2" style="height: 200%;"></canvas>
-                                            </div>
 
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-xl-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4>Latest Comments</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover table-lg">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Comment</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class='col-3 '>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                    <img src="assets/images/forestsayhi.png">
-                                                                </div>
-                                                                <p class='font-bold ms-3 mb-0'>Forest Chang</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class='col-auto'>
-                                                            <p class=' mb-0'>財金的同學怎麼這麼笨啊</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class='col-3 '>
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar avatar-md">
-                                                                    <img src="assets/images/forestsayhi.png">
-                                                                </div>
-                                                                <p class='font-bold ms-3 mb-0'>Forest Chang</p>
-                                                            </div>
-                                                        </td>
-                                                        <td class='col-auto'>
-                                                            <p class=' mb-0'>天王老子來我都當！</p>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -282,7 +213,7 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
-    <script src="assets/js/q7.js"></script>
+    <script src="assets/js/challenge.js"></script>
 </body>
 
 </html>
