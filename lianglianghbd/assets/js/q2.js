@@ -33,9 +33,20 @@ document.getElementById('submit').onclick = function() {
         var q1icon = document.getElementById('q2').childNodes[1]['firstElementChild'].classList
         q1icon.remove('bi-x')
         q1icon.add('bi-check')
+        var bs = document.getElementById('bs')
+        bs.style.visibility = 'visible'
+        bs.childNodes[1].setAttribute('src', './assets/images/liangyes.jpg');
+        setTimeout((function() {
+            bs.style.visibility = 'hidden';
+        }), 3000);
 
     } else {
-        alert('n')
+        var bs = document.getElementById('bs')
+        bs.style.visibility = 'visible'
+        bs.childNodes[1].setAttribute('src', './assets/images/liangno.jpg');
+        setTimeout((function() {
+            bs.style.visibility = 'hidden';
+        }), 3000);
     }
 }
 document.getElementById('reset').onclick = function() {

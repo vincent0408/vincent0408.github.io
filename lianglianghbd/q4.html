@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>錯宗複雜又軒鬧ㄉ解謎我們培你1淇</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -19,13 +19,17 @@
 </head>
 
 <body>
+    <div id='bs' class="blackscreen" style="visibility: hidden; z-index: 999;">
+        <img style=" position: fixed; top: 50%; left: 50%; width: 40%; transform:translate(-50%, -50%) ;">
+    </div>
+
     <div id="app">
         <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                            <a href="./qhome.html"><img src="assets/images/mainlogo.png" alt="Logo" srcset=""></a>
                         </div>
                         <div class="toggler">
                             <a href="#" class='sidebar-hide d-xl-none d-block'><i class='bi bi-x bi-middle'></i></a>
@@ -35,7 +39,12 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class='sidebar-title'>Menu</li>
-
+                        <li id='home' class="sidebar-item ">
+                            <a href="./qhome.html" class='sidebar-link'>
+                                <i class="bi bi-house"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
                         <li id='q1' class="sidebar-item ">
                             <a href="./q1.html" class='sidebar-link'>
                                 <i class="bi bi-x"></i>

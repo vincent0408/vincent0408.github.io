@@ -40,7 +40,7 @@ document.getElementById('submit').onclick = function() {
             } else {
                 clearInterval(fadeEffect);
             }
-        }, 200);
+        }, 400);
 
         firebase.database().ref('question').update({ q7: 1 })
         document.getElementById('q8').classList.add('active')
@@ -51,9 +51,21 @@ document.getElementById('submit').onclick = function() {
         q1icon.remove('bi-x')
         q1icon.add('bi-check')
 
+        var bs = document.getElementById('bs')
+        bs.style.visibility = 'visible'
+        bs.childNodes[1].setAttribute('src', './assets/images/liangyes.jpg');
+        setTimeout((function() {
+            bs.style.visibility = 'hidden';
+        }), 3000);
 
-        firebase.database().ref('question').update({ q8: 1 })
-    };
+    } else {
+        var bs = document.getElementById('bs')
+        bs.style.visibility = 'visible'
+        bs.childNodes[1].setAttribute('src', './assets/images/liangno.jpg');
+        setTimeout((function() {
+            bs.style.visibility = 'hidden';
+        }), 3000);
+    }
 
 }
 

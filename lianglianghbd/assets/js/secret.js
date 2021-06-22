@@ -1,5 +1,6 @@
 document.getElementById('secret').classList.add('active')
 document.getElementById('secret').classList.remove('disabled')
+
 firebase.database().ref().on('value', snapshot => {
     var snap = snapshot.val()['question']
     var question = Object.keys(snap)
