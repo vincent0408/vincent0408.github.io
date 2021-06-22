@@ -100,24 +100,16 @@ function clickTile(row, column) {
 shuffle()
 
 function checkStatus() {
-    if (document.getElementById('cell11').className === 'tile1') {
-        if (document.getElementById('cell12').className === 'tile2') {
-            if (document.getElementById('cell13').className === 'tile3') {
-                if (document.getElementById('cell21').className === 'tile4') {
-                    if (document.getElementById('cell22').className === 'tile5') {
-                        if (document.getElementById('cell23').className === 'tile6') {
-                            if (document.getElementById('cell31').className === 'tile7') {
-                                if (document.getElementById('cell32').className === 'tile8') {
-                                    if (document.getElementById('cell33').className === 'tile9') {
-                                        document.getElementById('cell33').className = 'tile9-1'
-                                        alert('冰箱')
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+    let total = 0
+    for (let i = 1; i < 4; i++) {
+        for (let j = 1; j < 4; j++) {
+            if (document.getElementById('cell' + i + j).className === ('tile' + ((i - 1) * 3 + j).toString())) {
+                total += 1;
             }
         }
+    }
+    if (total === 9) {
+        document.getElementById('cell33').className = 'tile9-1'
+        alert('冰箱')
     }
 }
