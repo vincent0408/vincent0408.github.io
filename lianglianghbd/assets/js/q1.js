@@ -40,7 +40,7 @@ document.getElementById('submit').onclick = function() {
         bs.childNodes[1].setAttribute('src', './assets/images/liangyes.jpg');
         setTimeout((function() {
             bs.style.visibility = 'hidden';
-        }), 3000);
+        }), 2000);
 
     } else {
         var bs = document.getElementById('bs')
@@ -48,7 +48,7 @@ document.getElementById('submit').onclick = function() {
         bs.childNodes[1].setAttribute('src', './assets/images/liangno.jpg');
         setTimeout((function() {
             bs.style.visibility = 'hidden';
-        }), 3000);
+        }), 2000);
     }
 }
 document.getElementById('reset').onclick = function() {
@@ -57,7 +57,7 @@ document.getElementById('reset').onclick = function() {
         var question = Object.keys(snap)
         var status = Object.values(snap)
         for (let i = 0; i < question.length; i++) {
-            firebase.database().ref('question').update({ q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6: 0, q7: 0, q8: 0 })
+            firebase.database().ref('question').update({ q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6: 0, q7: 0, q8: 0, secret: 0 })
 
         }
     })

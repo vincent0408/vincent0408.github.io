@@ -32,7 +32,7 @@ document.getElementById('reset').onclick = function() {
         var question = Object.keys(snap)
         var status = Object.values(snap)
         for (let i = 0; i < question.length; i++) {
-            firebase.database().ref('question').update({ q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6: 0, q7: 0, q8: 0 })
+            firebase.database().ref('question').update({ q1: 0, q2: 0, q3: 0, q4: 0, q5: 0, q6: 0, q7: 0, q8: 0, secret: 0 })
 
         }
     })
