@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>誰是佼佼者</title>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" style="visibility: hidden;">
+
+    <div id="wrapper">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">
+                    <Marquee>誰是佼佼者 <sup>2021</sup></Marquee>
+                </div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>主頁</span></a>
+            </li>
+            <hr class="sidebar-divider">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="personal.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>個人報告</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>爬蟲資料</span></a>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <span class="badge badge-danger badge-counter">4</span>
+                            </a>
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    製作團隊
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="./img/weidu.jpg" alt="">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">網頁設計</div>
+                                        <div class="small text-gray-500">杜薇 · 會計系</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="./img/micdu.jpg" alt="">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="font-weight-bold">數據分析</div>
+                                        <div class="small text-gray-500">杜昕 · 會計系</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="./img/chang.jpg" alt="">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="font-weight-bold">爬蟲、資料庫、JavaScipt</div>
+                                        <div class="small text-gray-500">張銘軒 · 財金系</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="./img/lin.jpg" alt="">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="font-weight-bold">數據分析</div>
+                                        <div class="small text-gray-500">林靖國 · 財金系</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span id='username_display' class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="./reset-password.html">
+                                    <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i> Reset Password
+                                </a>
+
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </nav>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-color1 shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class=" font-weight-bold text-color1 text-uppercase mb-1" style="font-size:1rem;">
+                                                ac率最高時段 </div>
+                                            <div id='ac_rate_max' class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-laugh-squint fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-color5 shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class=" font-weight-bold text-color5 text-uppercase mb-1" style="font-size:1rem;">
+                                                繳交次數最高時段 </div>
+                                            <div id='most_submit_times' class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-laptop-code fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-color4 shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class=" font-weight-bold text-color4-1 text-uppercase mb-1" style="font-size:1rem;">最長提交間隔時間
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div id='longest_submit_interval' class="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-bed fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="font-weight-bold text-warning text-uppercase mb-1" style="font-size:1rem;">
+                                                Debug時長</div>
+                                            <div id='total_debug_time' class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-frown fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="h3 mb-2 text-gray-800">個人報告</h1>
+                    <p class="mb-4">
+                        本頁提供各項個人化分析服務，各項資料乃根據使用者在過去<a target="_blank" href="https://judge.ccclub.io/">ccCLUB judge</a>的作業表現，所做出之進一步分析。
+                    </p>
+
+                    <div class="row">
+                        <div class="col-xl-12 mb-4">
+
+                            <div class="card shadow ">
+
+                                <div class="card-header  py-3 ">
+                                    <h6 class="m-0 font-weight-bold text-primary ">評價結果</h6>
+                                </div>
+
+                                <div class="card-body ">
+                                    <div class="row ">
+                                        <div class="col-xl-6 mb-4 ">
+                                            <div class="card mb-4 shadow mb-3" style=" min-height: 100%;">
+                                                <img id='rank_image' style="max-width: 100%; ">
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-xl-6 mb-4 ">
+                                            <div class="card mb-4 shadow mb-3" style=" min-height: 100%; ">
+                                                <div style="padding:1.25rem; ">
+                                                    <h1 id='rank_header' style="font-size: 3rem; white-space: pre-wrap;"></h1>
+                                                    <p id='rank_description' style="font-size: 1.5rem; white-space: wrap;">
+                                                    </p>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-xl-12 mb-4 ">
+                                            <div class="row">
+                                                <div class="col-xl-12 ">
+                                                    <div class="card shadow ">
+                                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between ">
+                                                            <h6 class="m-0 font-weight-bold text-primary ">戰力指數</h6>
+                                                            <button class="btn btn-secondary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="alert('精確度 : 計算六次作業的AC率，AC率越高則越高分\n效率 : 每小題AC順序排名，越先AC越高分\n細心度 : 時間內重複提交PAC的次數越少越高分\n完成度 : AC題數越多則越高分\n難題大師 : 精選全班AC率最低五題，此五題越多AC則越高分')">
+                                                                指數說明                                   
+                                                            </button>
+                                                        </div>
+                                                        <div class="card-body" style="height: 50rem;">
+
+                                                            <div class="chart-area" style="min-height: 90%;">
+                                                                <canvas id="radar"></canvas>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xl-6 mb-4 ">
+                            <div class="card shadow ">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">各作業與各小題繳交次數</h6>
+                                    <div class="dropdown no-arrow">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="try_hw" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            所有題目
+                                        </button>
+                                        <div id='try_dropdown' class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">作業選項:</div>
+
+                                            <button class="dropdown-item">所有題目</button>
+                                            <div class="dropdown-divider"></div>
+                                            <button class="dropdown-item">HW1</button>
+                                            <button class="dropdown-item">HW2</button>
+                                            <button class="dropdown-item">HW3</button>
+                                            <button class="dropdown-item">HW4</button>
+                                            <button class="dropdown-item">HW5</button>
+                                            <button class="dropdown-item">HW6</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="chart-bar">
+                                        <canvas id="submit_chart"></canvas>
+                                    </div>
+
+                                    <hr> 本圖呈現使用者於每次作業與每小題的繳交次數。
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6  mb-4">
+
+                            <div class="card shadow " style="height: 100%">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">各作業與各小題分數</h6>
+                                    <div class="dropdown no-arrow">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="percent_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        所有題目
+                                    </button>
+                                        <div id='progress_dropdown' class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">作業選項:</div>
+
+                                            <button class="dropdown-item">所有題目</button>
+                                            <div class="dropdown-divider"></div>
+                                            <button class="dropdown-item">HW 1</button>
+                                            <button class="dropdown-item">HW 2</button>
+                                            <button class="dropdown-item">HW 3</button>
+                                            <button class="dropdown-item">HW 4</button>
+                                            <button class="dropdown-item">HW 5</button>
+                                            <button class="dropdown-item">HW 6</button>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div id='hw_percentage' class="card-body">
+                                    <h4 class="small font-weight-bold">HW 1 <span class="float-right">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar " style="background-color: #F94144;" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">HW 2 <span class="float-right">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar " style="background-color: #F8961E;" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">HW 3 <span class="float-right">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" style="background-color: #F9C74F;" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">HW 4 <span class="float-right">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar " style="background-color: #90BE6D;" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">HW 5 <span class="float-right">0%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar " style="background-color: #43AA8B;" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">HW 6 <span class="float-right">0%</span></h4>
+                                    <div class="progress">
+                                        <div class="progress-bar " style="background-color: #577590;" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>誰是佼佼者 2021</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a id="logout" class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script>
+        var firebaseConfig5 = {
+            apiKey: "AIzaSyDWbADBm5aewJO98BLx4c54COL5ZlqbStk",
+            authDomain: "data-personal-page.firebaseapp.com",
+            databaseURL: "https://data-personal-page-default-rtdb.firebaseio.com",
+            projectId: "data-personal-page",
+            storageBucket: "data-personal-page.appspot.com",
+            messagingSenderId: "421559772073",
+            appId: "1:421559772073:web:4c3bdaab517fa5a47cdab8"
+        };
+        var page_db = firebase.initializeApp(firebaseConfig5, 'Page');
+    </script>
+    <script>
+        var firebaseConfig1 = {
+            apiKey: "AIzaSyDrxZJZ3k674-H2POQZbvFiHVTeFDslRMw",
+            authDomain: "data-personal-radar.firebaseapp.com",
+            databaseURL: "https://data-personal-radar-default-rtdb.firebaseio.com",
+            projectId: "data-personal-radar",
+            storageBucket: "data-personal-radar.appspot.com",
+            messagingSenderId: "657890312847",
+            appId: "1:657890312847:web:4f48cd252660f611cb66fa"
+        };
+        var radar_db = firebase.initializeApp(firebaseConfig1, 'Radar');
+    </script>
+    <script>
+        var firebaseConfig2 = {
+            apiKey: "AIzaSyCHDRcZbzdUf9SBq-SYbMxhUQohSOU04Vg",
+            authDomain: "data-personal-histogram.firebaseapp.com",
+            databaseURL: "https://data-personal-histogram-default-rtdb.firebaseio.com",
+            projectId: "data-personal-histogram",
+            storageBucket: "data-personal-histogram.appspot.com",
+            messagingSenderId: "849374921172",
+            appId: "1:849374921172:web:55b30f672b0b9aec691641"
+        };
+        var try_db = firebase.initializeApp(firebaseConfig2, 'Try');
+    </script>
+    <script>
+        var firebaseConfig3 = {
+            apiKey: "AIzaSyBUwix6qqCKgnB-hgkjX1VyCrCBrqYdTik",
+            authDomain: "pws-final-project-chart.firebaseapp.com",
+            databaseURL: "https://pws-final-project-chart-default-rtdb.firebaseio.com",
+            projectId: "pws-final-project-chart",
+            storageBucket: "pws-final-project-chart.appspot.com",
+            messagingSenderId: "251103274579",
+            appId: "1:251103274579:web:2dc9421cb4ba5bac18c8a6"
+        };
+        var rankings_db = firebase.initializeApp(firebaseConfig3, 'Rankings');
+    </script>
+    <script src="./js/personal.js"></script>
+</body>
+
+</html>
